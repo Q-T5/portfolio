@@ -13,11 +13,28 @@
 // limitations under the License.
 
 import { createRouter, createWebHistory } from "vue-router"
+import HomeView from '/src/views/HomeView.vue'
+import ProjectsView from '/src/views/ProjectsView.vue'
+import AboutView from '/src/views/AboutView.vue'
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-
+        {
+            path: "/portfolio/",
+            component: HomeView,
+            name: "Home"
+        },
+        {
+            path: "/projects/",
+            component: ProjectsView,
+            name: "Projects"
+        },
+        {
+            path: "/about/",
+            component: AboutView,
+            name: "About"
+        }
     ]
 });
 
