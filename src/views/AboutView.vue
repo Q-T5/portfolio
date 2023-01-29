@@ -15,16 +15,56 @@
 -->
 
 <script lang="js">
+import { ref } from 'vue'
+import ContactComp from "/src/components/ContactComp.vue"
+import EducationComp from "/src/components/EducationComp.vue"
+import LikesAndHobbysComp from "/src/components/LikesHobbysComp.vue"
+import WhoAmIComp from "/src/components/WhoAmIComp.vue"
+
 export default {
     name: "AboutView",
+    components: {
+        ContactComp, EducationComp, LikesAndHobbysComp, WhoAmIComp
+    },
     setup() {
+        const comps = ref([
+            { name: "who-am-i-comp", text: "Who Am I" },
+            { name: "education-comp", text: "Education" },
+            { name: "likes-and-hobbys-comp", text: "Likes & Hobbys" },
+            { name: "contact-comp", text: "Contact Me" }
+        ]);
 
+        const activeComp = ref("who-am-i-comp");
+
+        return {
+            comps, activeComp
+        }
     }
 }
 </script>
 
 <template>
-    <div>
-        <h1>About View</h1>
+    <div class="h-full flex">
+        <div class="w-[40%] h-full shadow-md">
+            <h1>Hello World</h1>
+        </div>
+        <div class="w-[60%]">
+            <div class="h-[80%]">
+                <keep-alive>
+                    <component :is="activeComp" />
+                </keep-alive>
+            </div>
+            <div class="w-full h-fit flex justify-center">
+                <hr class="opacity-50 w-[85%]" />
+            </div>
+            <div class="h-fit flex justify-center space-x-2 mt-2">
+                <button
+                    v-for="(comp, index) in comps"
+                    :key="index"
+                    @click="activeComp = comp.name"
+                    class="about-routes"
+                    :class="activeComp === comp.name ? 'active-comp' : ''">{{ comp.text }}</button>
+            </div>
+        </div>
     </div>
 </template>
