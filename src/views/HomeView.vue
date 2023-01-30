@@ -18,13 +18,37 @@
 export default {
     name: "HomeView",
     setup() {
-
+        
     }
 }
 </script>
 
 <template>
-    <div class="bg-blue-500 h-full flex justify-center items-center">
-        <h1>Home Component</h1>
+    <div 
+        class="h-full w-full flex flex-col items-center justify-center" 
+        style="
+            background-image: url('https://files.fm/thumb_show.php?i=mqvbkhcfw');
+            background-position: center;
+            filter: blur(0px);
+            -webkit-filter: blur(0px);
+            height: 100%;
+            background-repeat: no-repeat;">
+        <div class="absolute z-20 border-[1px] rounded-sm flex flex-col justify-around items-center backdrop-blur-md bg-black/50 h-[40%] p-4">
+            <h1 class="text-4xl">I am Bikathi Martin</h1>
+            <h2 class="text-3xl">Welcome to The Home of My Personal & Public Projects</h2>
+            <button 
+                class="btn rounded-full no-animation w-fit inline-flex"
+                @click="$router.push({ name: 'Projects' })">See My Projects
+                <i class="material-icons ml-1">arrow_forward</i>
+            </button>
+        </div>
+        <div class="absolute bottom-1 space-x-3 flex items-baseline">
+            <a href="https://www.github.com/q-t5" target="_blank">
+                <i class="fab fa-github fa-lg"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/bikathi-martin-665a42261/" target="_blank">
+                <i class="fab fa-linkedin fa-lg"></i>
+            </a>
+        </div>
     </div>
 </template>
