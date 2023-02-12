@@ -1,11 +1,17 @@
 <script>
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 
 export default {
   name: "App",
   setup: function () {
     const currentTheme = ref("cupcake");
     const drawerOpen = ref(false)
+    const mainRoutes = ref([
+      { to: "Home", name: "Home" },
+      { to: "Projects", name: "Projects" },
+      { to: "About", name: "About" },
+      { to: "Contact", name: "Contact" }
+    ])
 
     function changeTheme() {
       let targetElement = document.getElementById("theme-switcher");
@@ -20,7 +26,7 @@ export default {
     }
 
     return {
-      currentTheme, changeTheme, drawerOpen
+      currentTheme, changeTheme, drawerOpen, mainRoutes
     }
   }
 }
@@ -43,21 +49,37 @@ export default {
         <div class="flex-1">
           <p class="text-xl">Bikathi Martin
             <sup>
-              <font-awesome-icon 
-                :icon="currentTheme == 'cupcake' ? 'fa-solid fa-sun' : 'fa-solid fa-moon'" 
-                @click="changeTheme"
-                class="hover:cursor-pointer" />
+              <font-awesome-icon :icon="currentTheme == 'cupcake' ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"
+                @click="changeTheme" class="hover:cursor-pointer" />
             </sup>
           </p>
         </div>
       </div>
+      <div>
+        <router-view></router-view>
+      </div>
     </div>
     <div class="drawer-side">
       <label for="my-drawer" class="drawer-overlay"></label>
-      <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+      <ul class="p-1 w-[21rem] bg-base-100 space-y-2 flex flex-col pt-4 justify-between">
         <!-- Sidebar content here -->
-        <li><a>Sidebar Item 1</a></li>
-        <li><a>Sidebar Item 2</a></li>
+        <div v-for="(route, index) in mainRoutes" :key="index" class="h-fit">
+          <router-link 
+            :to="{ name: route.to }" 
+            class="text-lg p-2 block">{{ route.name }}
+          </router-link>
+          <div 
+            v-show="route.to == 'Projects'"
+            class="flex justify-center border-[1px] rounded-sm h-96 p-2 my-3">
+            <input 
+              type="text" 
+              id="projects-search" 
+              placeholder="Search My Projects..." />
+          </div>
+        </div>
+        <div>
+          
+        </div>
       </ul>
     </div>
   </div>
