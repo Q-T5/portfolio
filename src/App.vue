@@ -7,10 +7,10 @@ export default {
     const currentTheme = ref("cupcake");
     const drawerOpen = ref(false)
     const mainRoutes = ref([
-      { to: "Home", name: "Home" },
-      { to: "Projects", name: "Projects" },
-      { to: "About", name: "About" },
-      { to: "Contact", name: "Contact" }
+      { to: "Home", name: "Home", icon: "fa-solid fa-house" },
+      { to: "Projects", name: "Projects", icon: "fa-solid fa-diagram-project" },
+      { to: "About", name: "About", icon: "fa-solid fa-user" },
+      { to: "Contact", name: "Contact", icon: "fa-solid fa-message" }
     ])
 
     function changeTheme() {
@@ -61,24 +61,24 @@ export default {
     </div>
     <div class="drawer-side">
       <label for="my-drawer" class="drawer-overlay"></label>
-      <ul class="p-1 w-[21rem] bg-base-100 space-y-2 flex flex-col pt-4 justify-between">
+      <ul class="p-1 w-[19rem] bg-base-100 flex flex-col pt-2 space-y-1 rounded my-2">
         <!-- Sidebar content here -->
-        <div v-for="(route, index) in mainRoutes" :key="index" class="h-fit">
+        <div v-for="(route, index) in mainRoutes" :key="index" class="group">
           <router-link 
             :to="{ name: route.to }" 
-            class="text-lg p-2 block">{{ route.name }}
+            class="text-base p-2 inline-flex w-full items-center hover:bg-base-200 hover:rounded">
+            <span class="mr-2 inline-flex items-center">
+              <font-awesome-icon :icon="route.icon" class="group-hover:text-primary-focus text-sm icon" />
+            </span>{{ route.name }}
           </router-link>
           <div 
             v-show="route.to == 'Projects'"
-            class="flex justify-center border-[1px] rounded-sm h-96 p-2 my-3">
+            class="flex justify-center border-[1px] rounded-sm h-96 p-2 my-2">
             <input 
               type="text" 
               id="projects-search" 
               placeholder="Search My Projects..." />
           </div>
-        </div>
-        <div>
-          
         </div>
       </ul>
     </div>

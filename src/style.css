@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 .router-link-active {
-    @apply border-l-[4px] border-l-primary bg-base-300 w-full;
+    @apply border-l-[4px] border-l-primary-focus bg-base-300 w-full rounded;
 }
 
 #projects-search {
     @apply text-base w-full px-3 h-8 focus:border-primary-focus outline-none
     border-[1px] border-t-0 border-x-0 bg-transparent text-center;
+}
+
+.router-link-active .icon {
+    @apply text-primary-focus;
 }
